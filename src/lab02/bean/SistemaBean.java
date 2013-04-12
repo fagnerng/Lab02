@@ -1,6 +1,7 @@
 package lab02.bean;
 
-import java.util.List;
+
+import java.util.Set;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -12,23 +13,25 @@ import lab02.system.Sistema;
 public class SistemaBean {
 	private Sistema system;
 	private String editableTexto;
-	
+
 
 	public SistemaBean() {
-		this.system = new Sistema();
+		this.system = Sistema.getInstace();
 		this.editableTexto = "";
+		
 	}
-
 	public String recombinar() {
 		return "recombinar.xhtml";
 
 	}
 
 	public String addNovoTexto() {
-		if (this.editableTexto == null);
-			
-		else if (this.editableTexto.equals(""));
-		
+		if (this.editableTexto == null)
+			;
+
+		else if (this.editableTexto.equals(""))
+			;
+
 		else {
 			system.addText(this.editableTexto);
 			this.editableTexto = "";
@@ -45,7 +48,7 @@ public class SistemaBean {
 		this.editableTexto = editableTexto;
 	}
 
-	public List<String> getAllTextos() {
+	public Set<String> getAllTextos() {
 		return system.getAllTexts();
 	}
 

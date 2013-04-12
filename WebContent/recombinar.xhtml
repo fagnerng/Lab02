@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	 xmlns:f="http://java.sun.com/jsf/core"> 
 
 <h:head>
 	<title><ui:insert name="title">Lab02 Si1 2012.1</ui:insert></title>
@@ -15,16 +16,26 @@
 	<div align="center">
 		<h:form>
 			<h3>Selecione os Textos que deseja editar</h3>
-			<p:fieldset legend="Textos Disponiveis">
-				<p:dataTable var="allTextos" value="#{main.getAllTextos()}">
-					<p:column selectionMode="multiple" style="width:2%" />
-					<p:column headerText="Texto">
-						<h:outputText value="#{allTextos}" />
-					</p:column>
-
-				</p:dataTable>
-			</p:fieldset>
-
+			<h:panelGrid columns="3" style="margin-bottom:10px" cellpadding="5">
+				<p:fieldset legend="Textos Disponiveis">
+					<p:selectManyCheckbox value="#{recombinarBean.selectedTextos}"
+						layout="pageDirection">
+						<f:selectItems value="#{recombinarBean.getTextos()}" />
+					</p:selectManyCheckbox>
+				</p:fieldset>
+			</h:panelGrid>
+			  
+    <p:separator />  
+  
+    <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />  
+  
+    <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">  
+        <p:outputPanel id="display">  
+               <p:dataList value="#{recombinarBean.selectedTextos}" var="texto">  
+                #{texto}  
+            </p:dataList>  
+        </p:outputPanel>  
+    </p:dialog>  
 		</h:form>
 	</div>
 </h:body>

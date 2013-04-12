@@ -1,39 +1,44 @@
 package lab02.system;
 
-import java.util.ArrayList;
-import java.util.List;
-import org.primefaces.model.SelectableDataModel; 
-public class Sistema implements SelectableDataModel<String> {
-	private List<String> allTexts ;
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+import javax.faces.model.ListDataModel;
+
+public class Sistema extends ListDataModel<String> implements Serializable {
+
+	private static final long serialVersionUID = 7976411472730219629L;
+	private Map<String, String> allTexts;
+	private static Sistema sistema;
 	
-	public List<String> getAllTexts() {
-		if (allTexts == null )allTexts = new ArrayList<String>();
+	private Sistema(){
+		allTexts = new HashMap<String, String>();
+	}
+	public Set<String> getAllTexts() {
 		
-		return allTexts;
+		return allTexts.keySet();
 	}
-	public void setAllTexts(List<String> allTexts) {
-		this.allTexts = allTexts;
-	}
-	
-	public void addText(String texto){
-		if (texto	== null) return;
-		if (texto.equals("")) return;
+
+	public void addText(String texto) {
+		if (texto == null)
+			return;
+		if (texto.equals(""))
+			return;
 		getAllTexts();
-		this.allTexts.add(texto);
+		this.allTexts.put(texto.hashCode() + "", texto);
 	}
-	@Override
-	public String getRowData(String arg0) {
+	
+	static public Sistema getInstace(){
+		if (sistema == null) sistema = new Sistema();
+		return sistema;
 		
-		return arg0;
 	}
-	@Override
-	public Object getRowKey(String arg0) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Map <String, String>getAllTextos(){
+		return this.allTexts;
 	}
 	
 
-	
-	
-	
 }
