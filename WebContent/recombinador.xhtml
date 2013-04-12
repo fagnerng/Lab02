@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
 	<title><ui:insert name="title">Lab02 Si1 2012.1</ui:insert></title>
@@ -13,16 +14,18 @@
 
 <h:body>
 	<div align="center">
+
 		<h:form>
-			<center><h3>Criar novo texto</h3></center>
-				<br/>
-				<p:inputTextarea rows="10" cols="50" value = "#{main.editableTexto}"  style="min-width:800px"	/>
-				<br/>
-				<br></br>
-				<p:commandButton value="Salvar" action="#{main.addNovoTexto()}" ajax = "false"/>
-				<p:button value="Cancelar" outcome = "index.xhtml" ajax = "false"/>
-				
-			</h:form>
+
+			<p:commandButton update ="display" value="Adicionar Linha" action = "#{recombinarBean.addLinha()}" ajax = "false" />
+			<!--  -->
+			<p:commandButton value="Salvar" />
+			<!--  -->
+			<p:button value="Cancelar" outcome="index.xhtml" />
+			<p:dataList  var = "linhas" value = "#{recombinarBean.getTexto()}" id="display">
+				#{linhas}			
+			</p:dataList>
+		</h:form>
 	</div>
 </h:body>
 

@@ -21,7 +21,7 @@ public class SistemaBean {
 		
 	}
 	public String recombinar() {
-		return "recombinar.xhtml";
+		return "selecionador.xhtml";
 
 	}
 
