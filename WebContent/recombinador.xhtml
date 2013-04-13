@@ -16,8 +16,8 @@
 	<div align="center">
 
 		<h:form>
-
-			<p:commandButton update ="display" value="Adicionar Linha" action = "#{recombinarBean.addLinha()}" ajax = "false" />
+	
+			<p:commandButton value="Adicionar Linha" action = "#{recombinarBean.addLinha()}" ajax = "false" disabled = "#{recombinarBean.disable()}" />
 			<!--  -->
 			<p:commandButton value="Salvar" action = "#{recombinarBean.salvar()}" />
 			<!--  -->
@@ -25,6 +25,7 @@
 			<p:dataList  var = "linhas" value = "#{recombinarBean.getTexto()}" id="display">
 				#{linhas}			
 			</p:dataList>
+
 		</h:form>
 	</div>
 </h:body>

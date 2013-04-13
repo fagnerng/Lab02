@@ -1,6 +1,10 @@
 package lab02.util;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 
 public class Util {
@@ -31,5 +35,21 @@ public class Util {
 			temp += string +" ";	
 		}
 		return temp;
+	}
+	
+	public static List<String> stringToList(String Texto){
+		List<String> tempList = new ArrayList<String>();
+		String[] tempString = Texto.split(" ");
+		for (String string : tempString) {
+			if (!tempList.contains(string)){
+				tempList.add(string);
+			}
+		}
+		return tempList;
+	}
+	
+	public static void addMessagem(String messagem){
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(null, new FacesMessage("", messagem));
 	}
 }

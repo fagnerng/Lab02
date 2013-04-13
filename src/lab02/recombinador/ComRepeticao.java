@@ -13,18 +13,18 @@ public class ComRepeticao implements RecombinadorInterface{
 		this.palavras = texto.split(" ");
 		}
 	@Override
-	public String enable() {
-		return "true";
+	public String disable() {
+		return "false";
 	}
 
 	@Override
-	public String addLinha() {
+	public String addLinha(String Original) {
 		String temp = "";
 		for (int i = 0 ; i<12; i++){
 			temp += palavras[Util.random(palavras.length - 1)];	
 			if (i < 11) temp += " ";
 	}
-		return temp;
+		return Original +" \n"+ temp;
 	}
 
 }

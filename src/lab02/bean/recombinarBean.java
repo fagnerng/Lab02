@@ -8,6 +8,7 @@ import javax.faces.bean.SessionScoped;
 
 import lab02.recombinador.RecombinadorInterface;
 import lab02.system.Sistema;
+import lab02.util.Util;
 
 
 @ManagedBean
@@ -32,13 +33,12 @@ public class RecombinarBean implements Serializable {
 	public void setNovoTextoRecombinado(String novoTextoRecombinado) {
 		this.novoTextoRecombinado = novoTextoRecombinado;
 	}
-	public String enable(){
-		
-		return recombinador.enable();
+	public String disable() {
+		return recombinador.disable();
 	}
 	public void addLinha(){
 		
-		this.novoTextoRecombinado += "\n"+ Sistema.getInstance().getRecombinador().addLinha();
+		this.novoTextoRecombinado =  Sistema.getInstance().getRecombinador().addLinha(novoTextoRecombinado);
 		
 	}
 	public String salvar(){
@@ -48,6 +48,7 @@ public class RecombinarBean implements Serializable {
 		{
 			Sistema.getInstance().addText(novoTextoRecombinado);
 			novoTextoRecombinado = "";
+			Util.addMessagem("novo Texto foi adicionado");
 		}
 		return "index.xhtml";
 	}

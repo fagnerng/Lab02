@@ -32,7 +32,7 @@ public class Sistema extends ListDataModel<String> implements Serializable {
 		if (texto.equals(""))
 			return;
 		getAllTexts();
-		this.allTexts.put(Util.getSmallTitle(texto, 12), texto);
+		this.allTexts.put(Util.getSmallTitle(texto, 12), texto.replace("\n", " "));
 	}
 
 	public static Sistema getInstance() {

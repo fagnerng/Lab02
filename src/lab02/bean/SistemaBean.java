@@ -3,13 +3,14 @@ package lab02.bean;
 
 import java.util.Set;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 import lab02.system.Sistema;
+import lab02.util.Util;
 
 @ManagedBean(name = "main")
-@ApplicationScoped
+@SessionScoped
 public class SistemaBean {
 	private Sistema system;
 	private String editableTexto;
@@ -35,6 +36,7 @@ public class SistemaBean {
 		else {
 			system.addText(this.editableTexto);
 			this.editableTexto = "";
+			Util.addMessagem("novo Texto foi adicionado");
 		}
 
 		return "index.xhtml";
