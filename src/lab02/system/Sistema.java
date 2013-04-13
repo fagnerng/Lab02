@@ -16,12 +16,13 @@ public class Sistema extends ListDataModel<String> implements Serializable {
 	private Map<String, String> allTexts;
 	private static Sistema sistema;
 	private RecombinadorInterface recombinador;
-	
-	private Sistema(){
+
+	private Sistema() {
 		allTexts = new HashMap<String, String>();
 	}
+
 	public Set<String> getAllTexts() {
-		
+
 		return allTexts.keySet();
 	}
 
@@ -33,22 +34,24 @@ public class Sistema extends ListDataModel<String> implements Serializable {
 		getAllTexts();
 		this.allTexts.put(Util.getSmallTitle(texto, 12), texto);
 	}
-	
-	static public Sistema getInstace(){
-		if (sistema == null) sistema = new Sistema();
+
+	public static Sistema getInstance() {
+		if (sistema == null) {
+			sistema = new Sistema();
+		}
 		return sistema;
-		
 	}
-	
-	public Map <String, String>getAllTextos(){
+
+	public Map<String, String> getAllTextos() {
 		return this.allTexts;
 	}
+
 	public RecombinadorInterface getRecombinador() {
 		return recombinador;
 	}
+
 	public void setRecombinador(RecombinadorInterface recombinador) {
 		this.recombinador = recombinador;
 	}
-	
 
 }

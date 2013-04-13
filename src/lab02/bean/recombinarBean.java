@@ -2,6 +2,7 @@ package lab02.bean;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -16,13 +17,13 @@ public class RecombinarBean implements Serializable {
 	private static final long serialVersionUID = -2350631568266200986L;
 	private String novoTextoRecombinado;
 	private RecombinadorInterface recombinador;
-	private Sistema sistema;
 	
-	public RecombinarBean(){
+	@PostConstruct
+	public void init(){
 		setNovoTextoRecombinado("");
-		this.sistema = Sistema.getInstace();
-		
+		recombinador = Sistema.getInstance().getRecombinador();
 	}
+	
 
 	public String getNovoTextoRecombinado() {
 		return novoTextoRecombinado;
@@ -32,15 +33,24 @@ public class RecombinarBean implements Serializable {
 		this.novoTextoRecombinado = novoTextoRecombinado;
 	}
 	public String enable(){
+		
 		return recombinador.enable();
 	}
 	public void addLinha(){
-		if (recombinador == null) recombinador = sistema.getRecombinador();
-		System.out.println(recombinador);
-		this.novoTextoRecombinado += "\n"+ recombinador.addLinha();
+		
+		this.novoTextoRecombinado += "\n"+ Sistema.getInstance().getRecombinador().addLinha();
 		
 	}
-	
+	public String salvar(){
+		if (novoTextoRecombinado == null);
+		else if(novoTextoRecombinado.equals(""));
+		else
+		{
+			Sistema.getInstance().addText(novoTextoRecombinado);
+			novoTextoRecombinado = "";
+		}
+		return "index.xhtml";
+	}
 	public String[] getTexto(){
 
 		return novoTextoRecombinado.split("\n");

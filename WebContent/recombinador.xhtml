@@ -19,7 +19,7 @@
 
 			<p:commandButton update ="display" value="Adicionar Linha" action = "#{recombinarBean.addLinha()}" ajax = "false" />
 			<!--  -->
-			<p:commandButton value="Salvar" />
+			<p:commandButton value="Salvar" action = "#{recombinarBean.salvar()}" />
 			<!--  -->
 			<p:button value="Cancelar" outcome="index.xhtml" />
 			<p:dataList  var = "linhas" value = "#{recombinarBean.getTexto()}" id="display">

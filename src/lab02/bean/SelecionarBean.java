@@ -5,12 +5,14 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 
 import lab02.recombinador.ComRepeticao;
 import lab02.system.Sistema;
+import lab02.util.Util;
 
 @ManagedBean
 @SessionScoped
@@ -21,10 +23,13 @@ public class SelecionarBean implements Serializable {
 
 	private Sistema sistema;
 
-	public SelecionarBean() {
-		sistema = Sistema.getInstace();
+	@PostConstruct
+	public void init()
+	{
+		sistema = Sistema.getInstance();
 		Textos = sistema.getAllTextos();
 	}
+
 
 	public List<String> getSelectedTextos() {
 		return selectedTextos;
@@ -53,17 +58,25 @@ public class SelecionarBean implements Serializable {
 	public String enable() {
 		return Textos.isEmpty() ? "true" : "false";
 	}
-	
+
 	public String comRepeticao() {
-		sistema.setRecombinador(new ComRepeticao("Fagner Nascimento Gomes"));
-		
+		System.out.println(selectedTextos.size());
+		sistema.setRecombinador(new ComRepeticao(Util
+				.listToString(selectedTextos)));
 		return paginaRecombinar();
-		}
-	public String semRepeticao() {return paginaRecombinar();}
-	public String inversa() {return paginaRecombinar();}
-	
-	private String paginaRecombinar(){
+	}
+
+	public String semRepeticao() {
+		return paginaRecombinar();
+	}
+
+	public String inversa() {
+		return paginaRecombinar();
+	}
+
+	private String paginaRecombinar() {
+		selectedTextos = null;
 		return "recombinador.xhtml";
 	}
-	
+
 }

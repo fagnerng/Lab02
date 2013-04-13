@@ -16,7 +16,7 @@ public class SistemaBean {
 
 
 	public SistemaBean() {
-		this.system = Sistema.getInstace();
+		this.system = Sistema.getInstance();
 		this.editableTexto = "";
 		
 	}

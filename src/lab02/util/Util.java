@@ -1,5 +1,7 @@
 package lab02.util;
 
+import java.util.List;
+
 
 public class Util {
 	
@@ -21,5 +23,13 @@ public class Util {
 		
 		return (int) Math.ceil( ( Math.random() * maxValue ));
 		
+	}
+	
+	public static String listToString(List<String> lista){
+		String temp = "";
+		for (String string : lista) {
+			temp += string +" ";	
+		}
+		return temp;
 	}
 }
