@@ -6,7 +6,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-import lab02.recombinador.RecombinadorInterface;
 import lab02.system.Sistema;
 import lab02.util.Util;
 
@@ -17,12 +16,10 @@ public class RecombinarBean implements Serializable {
 
 	private static final long serialVersionUID = -2350631568266200986L;
 	private String novoTextoRecombinado;
-	private RecombinadorInterface recombinador;
-	
-	@PostConstruct
+		@PostConstruct
 	public void init(){
 		setNovoTextoRecombinado("");
-		recombinador = Sistema.getInstance().getRecombinador();
+	
 	}
 	
 
@@ -34,7 +31,7 @@ public class RecombinarBean implements Serializable {
 		this.novoTextoRecombinado = novoTextoRecombinado;
 	}
 	public String disable() {
-		return recombinador.disable();
+		return Sistema.getInstance().getRecombinador().disable();
 	}
 	public void addLinha(){
 		
@@ -48,7 +45,8 @@ public class RecombinarBean implements Serializable {
 		{
 			Sistema.getInstance().addText(novoTextoRecombinado);
 			novoTextoRecombinado = "";
-			Util.addMessagem("novo Texto foi adicionado");
+			Sistema.getInstance().setRecombinador( null);
+			Util.addMessagem("novo texto foi adicionado");
 		}
 		return "index.xhtml";
 	}

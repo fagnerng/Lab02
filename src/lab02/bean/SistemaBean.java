@@ -36,7 +36,7 @@ public class SistemaBean {
 		else {
 			system.addText(this.editableTexto);
 			this.editableTexto = "";
-			Util.addMessagem("novo Texto foi adicionado");
+			Util.addMessagem("novo texto foi adicionado");
 		}
 
 		return "index.xhtml";

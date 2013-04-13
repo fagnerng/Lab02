@@ -83,7 +83,10 @@ public class SelecionarBean implements Serializable {
 	}
 
 	private String paginaRecombinar() {
-	
+		if (selectedTextos == null || selectedTextos.isEmpty()){
+			Util.addMessagem("Selecione pelo menos um texto");
+			return null;
+		}
 		selectedTextos = new ArrayList<String>();
 		return "recombinador.xhtml";
 	}

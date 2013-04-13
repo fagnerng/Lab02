@@ -6,11 +6,12 @@ import lab02.util.Util;
 
 public class SemRepeticao implements RecombinadorInterface {
 	private List<String> listaDePalavras;
-	private String disable = "false";
+	private String disable;
 
 	
 	public SemRepeticao (String texto){
 		listaDePalavras = Util.stringToList(texto);
+		this.disable = "false";
 	}
 	@Override
 	public String disable() {
@@ -25,11 +26,12 @@ public class SemRepeticao implements RecombinadorInterface {
 			temp+=listaDePalavras.remove(Util.random(listaDePalavras.size()-1))+" " ;
 			count++;
 		}
-		System.out.println(temp.length());
-		if (!temp.equals("")){
+		
+		if (temp.length()!=0){
 			return Original + "\n" + temp;
 		}
-		disable = "true";
+		Util.addMessagem("Palavras disponiveis acabaram");
+		this.disable = "true";
 		return Original;
 	}
 
